@@ -337,7 +337,6 @@ This is not a new generation JavaScript, but important to know.
    [object Object] {
        name: "Manu"
        }
-
    ```
 
    So, how to 'copy'?
@@ -350,7 +349,7 @@ This is not a new generation JavaScript, but important to know.
    };
 
    const secondPerson = {
-     ...person //copy perso, not reference it
+     ...person //copy person, not reference it
    };
 
    person.name = "Manu"; //changing to new value
@@ -364,5 +363,29 @@ This is not a new generation JavaScript, but important to know.
    [object Object] {
        name: "Max"
        }
-
    ```
+
+### 2.10 Refreshing Array Functions
+
+#### map()
+
+To manipulate each of the elements in an array. In example below, let's double each of the numbers in an array.
+
+```javascript
+const numbers = [1, 2, 3];
+
+//let call the element in the array as num, you can use any name below
+const doubleNumbers = numbers.map(num => {
+  return num * 2;
+});
+
+console.log(numbers);
+console.log(doubleNumbers);
+```
+
+Output:
+
+```
+[1, 2, 3]
+[2, 4, 6]
+```
