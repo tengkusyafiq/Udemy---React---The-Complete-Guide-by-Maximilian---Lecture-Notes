@@ -289,10 +289,80 @@ const numbers = [1, 2, 3, 4];
 console.log(num1, num4);
 ```
 
-_Example 2: Destructuring object properties:(KIV: not fully understand yet._
+_Example 2: Destructuring object properties:(KIV: not fully understand yet.)_
 
 ```javascript
 {name}={name:'Max', age:28}
 console.log(name) //Max
 console.log(age) //undefined
 ```
+
+### 2.9 Primitive and Reference Types Refresher
+
+This is not a new generation JavaScript, but important to know.
+
+1. Primitive types
+   Numbers, strings, booleans are called primitive types.
+   Things to take note is, when you put its value into another variable, it will 'copy' them.
+   Example:
+
+   ```javascript
+   const num1 = 1;
+   const num2 = num1;
+   console.log(num2);
+   ```
+
+   Output:
+   `1`
+
+2. Reference types
+   Objects and arrays are reference type. Things to take note is, when you try to 'copy' like primitive type above, it will not 'copy', but it just reference it instead. This means, if the source is changed, it will also changed.
+   Example:
+
+   ```javascript
+   const person = {
+     name: "Max"
+   };
+
+   const secondPerson = person;
+
+   person.name = "Manu"; //changing to new value
+
+   console.log(secondPerson);
+   ```
+
+   Output: It will print out new value since its reference is changed.
+
+   ```
+   [object Object] {
+       name: "Manu"
+       }
+
+   ```
+
+   So, how to 'copy'?
+   Use spread like we learned for object or array.
+   Example:
+
+   ```javascript
+   const person = {
+     name: "Max"
+   };
+
+   const secondPerson = {
+     ...person //copy perso, not reference it
+   };
+
+   person.name = "Manu"; //changing to new value
+
+   console.log(secondPerson);
+   ```
+
+   Output: It will print out new value since its reference is changed.
+
+   ```
+   [object Object] {
+       name: "Max"
+       }
+
+   ```
