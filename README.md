@@ -6,7 +6,7 @@ All of the lecture notes and highlighted changes are saved with commit.
 So, to read from each topic or changes, see the commits historically.
 
 Lecture topic labelling:
-eg: 1.3.2 = topic 1, video 3, 2 changes/commit numbers
+eg: 1.3.2 = topic 1, video 3, changes/commit number 2
 
 ## 1.4 Making single page app using component multiple times and simple props
 
