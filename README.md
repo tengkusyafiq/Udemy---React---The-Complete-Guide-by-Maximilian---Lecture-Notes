@@ -374,7 +374,7 @@ To manipulate each of the elements in an array. In example below, let's double e
 ```javascript
 const numbers = [1, 2, 3];
 
-//let call the element in the array as num, you can use any name below
+//let's call the element in the array as num, you can use any name below
 const doubleNumbers = numbers.map(num => {
   return num * 2;
 });
@@ -389,3 +389,36 @@ Output:
 [1, 2, 3]
 [2, 4, 6]
 ```
+
+## 3. React Basics
+
+Learn all core features.
+
+### 3.2 Build Workflow
+
+Good workflow makes it easier to manage, optimized.
+Use next gen javascript.
+How?
+Use npm or yarn for Dependency management.
+Use bundler such as Webpack.
+Use compiler such as Babel + presets
+Use development server to test locally.
+
+All of things above can be setup automatically, after this.
+
+### 3.3 Using a create-react-app | SETUP
+
+create-react-app is to setup and create react app automatically for us.
+
+#### SETUP
+
+1. install node js.
+2. `npm install create-react-app -g`
+3. To create a project:
+   `create-react-app <app-name>`
+   In this course, let's use name like below WITH same version of create-react-app, so that we use the same structure like used in this course.
+   `create-react-app react-complete-guide --scripts-version 1.1.5`
+4. After the process complete, `cd react-complete-guide`.
+5. `npm start` to start the development server and watching your files for any edit.
+
+### 3.4 Understanding the folder structure
