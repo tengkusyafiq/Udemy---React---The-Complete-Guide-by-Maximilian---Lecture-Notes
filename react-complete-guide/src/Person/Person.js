@@ -7,8 +7,9 @@ const person = props => {
         I'm {props.name} and I'm {props.age} years old.
       </p>
       <p>{props.children}</p>
+      <input type="text" onChange={props.change} value={props.name} />
     </div>
-  ); //Math.floor= to round up
+  );
 };
 
 export default person;

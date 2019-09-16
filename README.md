@@ -971,3 +971,41 @@ Then, we use bind() to get the argument value. bind() contains 2 elements, first
           age={this.state.persons[0].age}
         />
 ```
+To check if it works, click on the related paragraph.
+
+### 3.23 Adding two way binding
+Let say we want user to change the name. So we use <input> and _onChange_ so we get the change every time the user change input.
+To do this, let's add line below the Person.js in <div> like below.
+```js
+      <input type="text" onChange={props.change}>
+```
+We use attribute we named _change_ to link a method from App.js. Add attribute _change_ and link it with a new method called _userNameHandler_.
+```js
+        <Person
+          click={this.switchNameHandler}
+          change={this.userNameHandler}
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+        />
+```
+
+Make a new method to handle the state change instead of using the old one, just to make it easy to understand.
+```js
+  userNameHandler = event => {
+    this.setState({
+      persons: [
+        { name: "Max", age: 28 },
+        { name: event.target.value, age: 29 },
+        { name: "Elle", age: 27 }
+      ]
+    });
+  };
+```
+We use a reserved argument called _event_ because we only expect to get an event when using this method. In this example, we only want to change the second name (Manu). So we set the name to _event.target.value_.
+Basically, the text input from Person.js will pass to userNameHandler, then the input will be put into the "Manu" name state.
+
+Additionally, to put the name "Manu" in the text input before we changed it, we can use reserved attribute named _value_ in <input> in Person.js
+```js
+      <input type="text" onChange={props.change} value={props.name}>
+```
+_props.name_ is referring to related name properties, in this case, "Manu". Now if you run it, word "Manu" is already in the text box, and you can change it. This is called, two way binding.
