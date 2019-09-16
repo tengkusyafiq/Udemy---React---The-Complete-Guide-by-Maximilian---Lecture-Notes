@@ -576,6 +576,8 @@ Component is just a function which returns some jsx.
 
 Now we're in the Person.js, you can use _function_ keyword, but let's stick to good habit which is, put it in const or let, and using arrow function.
 
+Note that functional component doesnt have render() method, it just return somthing. While class-based component must have render() method.
+
 But first, we have to import react.
 
 ```javascript
@@ -776,3 +778,140 @@ For example, We want to change Max's name and Elle's age on click. Let's edit _s
   };
 ```
 Note that _state_ and _setState_ in _switchNameHandler_ method have the same structure, just different value. This habit is good so you don't mess up the state structure. Of course, you don't have to copy and paste the whole thing. Just take ones you want to change, and react will compare it.
+
+### 3.20 Manipulating the state in functional component
+This is only available in react 16.8 and should be okay for the version above that. Since functional component doesn't have _state_, they introduce hooks which has multiple hooks we can use, such as in this case, _useState_(every hooks start with _use_).
+So, we can use it same as in class-based component? No. Unlike _setState_ which only update the changed value, _useState_ will completely neglect everything and only use the updated values. Meaning, you also have to write all of the unchanged states if you only one to change a bit, since it will neglect the whole, old ones. It will be messy. But the good thing is we can use _useState_ multiple times in a functional component. So to handle this disadvantage efficiently, put state you don't want to change in other _useState_, or group states or values in the right _useState_s.
+
+That's the difference. Now how to use it? Make sure that you already understand how to use state in class-based component so you could see the difference in this functional component. 
+
+First, let's use functional component instead of class-based component in _App.js_. So, we just edit the previous code and do some big changes.
+
+Note: You can use function inside a function in react(nested functions).
+
+Change from class-based to functional component will be easy if you understand their difference, such as below:
+
+1. Import _useState_ instead of _Component_. Of course, keep the _Component_ if you want to use it in other class-based component.
+```js
+import React, {useState} from 'react';
+```
+
+
+2. Change the class-based header to functional header.
+Before(class-based):
+```js
+class App extends Component {
+  render(){
+    ...
+  }
+}
+```
+
+After: Also remove render(){} since functional doesn't have render method, just return and functions.
+```js
+const App = (props) => {
+  ...
+//(don't forget to remove one extra } at the end from render(){})
+}
+```
+
+3. Write initial state. To use a state, it's a little bit different. Put state in `useState({})` like below.
+Before(class-based uses state):
+```js
+state = {
+  persons: [
+    { name: "Max", age: 28 },
+    { name: "Manu", age: 29 },
+    { name: "Elle", age: 26 }
+  ],
+  otherState: "other value"
+};
+```
+
+After(functional use useState from hooks): put this function anywhere before _return_.
+```js
+  const [personState, setPersonState] = useState({
+    persons: [
+      { name: "Max", age: 28 },
+      { name: "Manu", age: 29 },
+      { name: "Elle", age: 26 }
+    ],
+    otherState: "other value"
+  });
+```
+What _useState_ does is it returns an array with exactly two elements. The first element will hold the initial state(_personState_), the second element will be the function to change the state(_setPersonState_).
+
+4. Link into the attributes. Now let's change the js in the attributes in _return_.
+Before(class-based uses _this_):
+```js
+      <Person
+        name={this.state.persons[0].name}
+        age={this.state.persons[0].age}
+      />
+```
+
+After(functional uses the element with initial state):
+```js
+      <Person
+        name={personState.persons[0].name}
+        age={personState.persons[0].age}
+      />
+```
+
+5. Handle the changing state with function.
+Before(class-based uses _this_):
+```js
+  switchNameHandler = () => {
+    this.setState({
+      persons: [
+        { name: "Maxima", age: 28 },
+        { name: "Manu", age: 29 },
+        { name: "Elle", age: 27 }
+      ]
+    });
+  };
+```
+
+After(functional uses the function to change state, which is _setPersonState_. Oh, and change the formatby putting _const_ on the front.):
+```js
+  const switchNameHandler = () => {
+    setPersonState({
+      persons: [
+        { name: "Maxima", age: 28 },
+        { name: "Manu", age: 29 },
+        { name: "Elle", age: 27 }
+      ]
+    });
+  };
+
+```
+One more thing, as you know, we don't use _this_ in functional component. So in button click line, you can just remove _this._.
+Before(class-based uses _this_):
+```js
+      <button onClick={this.switchNameHandler}>Switch me!</button>
+```
+
+After(functional doesn't use _this_):
+```js
+      <button onClick={switchNameHandler}>Switch me!</button>
+```
+
+Additionally, let's print out personState in the console to see the state before and after changing the state:
+```js
+console.log(personState);
+```
+
+Now, if you run it, everything should works. But if you look in the console before and after click, state `otherState: "other value"` is missing after updating the state, because we don't put it in the _setPersonState_ function. It is because  _useState_ overwriting all of the initial state(I mentioned the disadvantage above). This could be a problem if the state is large. Now let say we want to make multiple state we don't want to change, we can use _useState_ multiple times. This way, we can only change _useState_ we want to change.
+
+Example, we make extra _setState_ to exclude state we don't want to change, or just want to put it in different state 'group':
+```js
+  const [otherState, setOtherState] = useState({
+    otherState: "other value"
+  });
+```
+Now you can remove `otherState: "other value"` in the original _useState_. 
+Use console.log to see if the otherState is still there after click with code below:
+```js
+  console.log(personState, otherState);
+```
+Even after click, `otherState: "other value"` should still be there.
