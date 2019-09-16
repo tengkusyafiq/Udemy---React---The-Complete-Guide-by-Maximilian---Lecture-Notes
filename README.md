@@ -593,30 +593,76 @@ const person = () => {
 ```
 
 Then export it.
+
 ```javascript
-export default person
+export default person;
 ```
+
 To start using this component in any file, in App.js for example:
 
 Import it:
+
 ```javascript
-import Person from './Person/Person';
+import Person from "./Person/Person";
 ```
+
 Note that give the component name with Uppercase character, so it wouldn't interfere with jsx format.
 
 To call it multiple timnes:
+
 ```javascript
 <Person /> // or <Person></Person>
 ```
 
 ### 3.11 Outputting dynamic content
+
 Let's make some dynamic output in the component we made above.
 
 In _Person.js_:
 We actually can write javascript function in jsx by putting it in {}. We also called another function in here, so we can write advanced function somewhere else.
+
 ```javascript
-  return (
-    <p>I'm a person and I'm {Math.floor(Math.random() * 30)} years old.</p> //Math.floor= to round up
-  );
+return (
+  <p>I'm a person and I'm {Math.floor(Math.random() * 30)} years old.</p> //Math.floor= to round up
+);
 ```
+
 Now it will output different random values.
+
+### 3.12 Working with props
+
+props = properties
+Like `<div className="App">` which has _className_ attribute, we also can make our own attributes for our components.
+In this example, let's make _name_ and _age_ attribute.
+
+In _Person.js_, put _props_ (you can rename it but it's a good habit) like below:
+
+```js
+const person = props => {
+  return (
+    <p>
+      I'm {props.name} and I'm {props.age} years old.
+    </p>
+  ); //Math.floor= to round up
+};
+```
+
+To use the attributes in other file:
+
+```js
+<Person name="Max" age="28" />
+```
+
+Note that, when using class-based components, use _this.props_ instead of just _props_ like below:
+
+```js
+class Person extends Component {
+  render() {
+    return (
+      <p>
+        I'm {props.name} and I'm {props.age} years old.{" "}
+      </p>
+    );
+  }
+}
+```
