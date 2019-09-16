@@ -10,6 +10,8 @@ class App extends Component {
         <h1>Hola!</h1>
         <h2>Name's TG.</h2>
         <Person />
+        <Person />
+        <Person />
       </div>
     );
   }

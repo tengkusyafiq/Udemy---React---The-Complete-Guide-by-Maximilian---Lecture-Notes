@@ -604,7 +604,19 @@ import Person from './Person/Person';
 ```
 Note that give the component name with Uppercase character, so it wouldn't interfere with jsx format.
 
-To call it:
+To call it multiple timnes:
 ```javascript
 <Person /> // or <Person></Person>
 ```
+
+### 3.11 Outputting dynamic content
+Let's make some dynamic output in the component we made above.
+
+In _Person.js_:
+We actually can write javascript function in jsx by putting it in {}. We also called another function in here, so we can write advanced function somewhere else.
+```javascript
+  return (
+    <p>I'm a person and I'm {Math.floor(Math.random() * 30)} years old.</p> //Math.floor= to round up
+  );
+```
+Now it will output different random values.
