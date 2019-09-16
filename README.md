@@ -686,3 +686,50 @@ In other component/file, we can write something in the children property such as
 my hobby is fishing.
 </Person>
 ```
+
+### Using state
+Sometimes you don't want to get information from outside(with props), but you want to have it inside the component itself, and change it from inside there too.
+Basically, let's use variables to store values.
+
+In our example, the _name_ and _age_ are still hardcoded. Let's put it in 'variables'.
+
+_class_ component that extends from _Component_ has a reserved property we can used called _state_. _state_ is managed from inside a component.
+
+Note: in react 16.8, they introduce Hooks so we can also use state in a functional component.
+
+Use state with care because it's hard to manage as your app grows. 
+
+Let's learn how to use it in _App_ class component in _App.js_. 
+
+In _state_, you can add a property or array or inside each other. In this case, property(persons) that holds arrays(each persons' data) like below:
+
+```js
+class App extends Component {
+  state = {
+    persons: [
+      { name: "Max", age: 28 },
+      { name: "Manu", age: 29 },
+      { name: "Elle", age: 26 }
+    ]
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Hola!</h1>
+        <h2>Name's TG.</h2>
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+        />
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+        />
+      </div>
+    );
+  }
+}
+```
+Then, in render method, use _this.to.the.variable..._ in {} to get any value in the class state.
+Special thing about state is, if it changes, react will update and rerender our DOM.

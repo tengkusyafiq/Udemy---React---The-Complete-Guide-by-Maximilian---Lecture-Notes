@@ -4,16 +4,27 @@ import "./App.css";
 import Person from "./Person/Person";
 
 class App extends Component {
+  state = {
+    persons: [
+      { name: "Max", age: 28 },
+      { name: "Manu", age: 29 },
+      { name: "Elle", age: 26 }
+    ]
+  };
+
   render() {
     return (
       <div className="App">
         <h1>Hola!</h1>
         <h2>Name's TG.</h2>
-        <Person name="Max" age="28">
-          My hobby is fishing.
-        </Person>
-        <Person name="Manu" age="29" />
-        <Person name="Elle" age="26" />
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+        />
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+        />
       </div>
     );
   }
