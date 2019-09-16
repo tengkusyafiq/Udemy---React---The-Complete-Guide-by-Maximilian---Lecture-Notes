@@ -666,3 +666,23 @@ class Person extends Component {
   }
 }
 ```
+### 3.13 Children property
+Children attribute property in props is reserved for anything you put between opening and closing of the components when you use it.
+Example, in _Person.js_, let's get the children attribute:
+```js
+  return (
+    <div>
+      <p>
+        I'm {props.name} and I'm {props.age} years old.
+      </p>
+      <p>{props.children}</p>
+    </div>
+  );
+```
+
+In other component/file, we can write something in the children property such as below:
+```js
+<Person name="Max" age="28">
+my hobby is fishing.
+</Person>
+```
