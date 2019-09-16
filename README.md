@@ -514,3 +514,50 @@ Contains the files we will work in for the app.
 
 6. _App.test.js_
    Allows us to create unit test for different units.
+
+### 3.5 Components Basics
+
+For starter, in _App.js_, there is one component called App like below:
+
+```javascript
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Hola!</h1>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+See the `export default App`? The component is imported in _index.js_ then it is rendered directly like below:
+
+```javascript
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+
+Typically, only one root component is rendered in _index.js_ like above, we render App component.
+So, in the App component in _App.js_, you would nest all other components your application might need.
+
+#### One way of defining a react component:
+
+Example:
+
+```javascript
+import React, { Component } from "react";
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Hola!</h1>
+      </div>
+    );
+  }
+}
+```
+
+We make class then use _extends_ to inherit from Component class from the react library.
+The class in the example have one method called, render method to render something to the screen. Every components need to have this render method.
