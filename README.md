@@ -687,7 +687,7 @@ my hobby is fishing.
 </Person>
 ```
 
-### Using state
+### 3.14 Using state in class-based component
 Sometimes you don't want to get information from outside(with props), but you want to have it inside the component itself, and change it from inside there too.
 Basically, let's use variables to store values.
 
@@ -750,3 +750,29 @@ switchNameHandler = () => {
 };
 ```
 
+### 3.18 Manipulating the state
+Let's manipulate the state with click event.
+To change a state, use _setState_ so react can pickup the change. What _setState_ does is it will change the value you want to change.
+
+For example, We want to change Max's name and Elle's age on click. Let's edit _switchNameHandler_ method we wrote before.
+```js
+  state = {
+    persons: [
+      { name: "Max", age: 28 },
+      { name: "Manu", age: 29 },
+      { name: "Elle", age: 26 }
+    ],
+    otherState: 'other value'
+  };
+
+  switchNameHandler = () => {
+    this.setState({
+      persons: [
+        { name: "Maxima", age: 28 },
+        { name: "Manu", age: 29 },
+        { name: "Elle", age: 27 }
+      ]
+    });
+  };
+```
+Note that _state_ and _setState_ in _switchNameHandler_ method have the same structure, just different value. This habit is good so you don't mess up the state structure. Of course, you don't have to copy and paste the whole thing. Just take ones you want to change, and react will compare it.
