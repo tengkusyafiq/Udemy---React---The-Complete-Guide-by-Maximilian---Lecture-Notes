@@ -424,7 +424,7 @@ create-react-app is to setup and create react app automatically for us.
 
 ### 3.4 Understanding the folder structure
 
-#### src/ folder
+#### project root folder
 
 1. Lock files, such as _package-lock.json_ and _yarn.lock_
    You can ignore these files, they're just locking in the versions of the dependencies.
@@ -474,6 +474,43 @@ It's a folder that gets served by the web server in the end, and it only holds t
 
    where we actually mount our react app later.
 
-   In this file also, you can import css and metatags.
+   In this file also, you can import css libraries and metatags.
 
 2. _manifest.json_
+   Where we can define some metadatas about our application.
+
+#### src/
+
+Contains the files we will work in for the app.
+
+1. _index.js_
+   Gets access to the _root_ element in our DOM:
+
+   ```javascript
+   ReactDOM.render(<App />, document.getElementById("root"));
+   ```
+
+   The _root_ element we see abouve is the one we see in the _index.html_ mentioned before.
+   The reference of _App_ object or element which we import from app file will be rendered.
+
+2. _app.js_
+   This is where we see our first and only react component we have for starter, like below:
+   ```javascript
+   render() {
+    return (
+      <div className="App">
+      </div>
+    );
+   }
+   ```
+3. _app.css_
+   Defines some styling we use in _app.js_.
+
+4. _index.css_
+   Global styling.
+
+5. _registerServiceWorker.js_
+   For registering a service worker automatically out of the box. No configuration needed.
+
+6. _App.test.js_
+   Allows us to create unit test for different units.
