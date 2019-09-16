@@ -733,3 +733,20 @@ class App extends Component {
 ```
 Then, in render method, use _this.to.the.variable..._ in {} to get any value in the class state.
 Special thing about state is, if it changes, react will update and rerender our DOM.
+
+### 3.16 Handling events with methods
+Functions in a class is called method.
+In this example, we try to handle click events with method we write.
+Write button like below in render.
+```js
+<button onClick={this.switchNameHandler}>Switch me!</button>
+```
+Note that above, we are not putting () after switchNameHandler. If we out it, the method will be run as soon as react renders it, not after the button click.
+
+In the same class, write _switchNameHandler_ method as below.
+```js
+switchNameHandler = () => {
+  console.log("was clicked."); //just to print in console
+};
+```
+
