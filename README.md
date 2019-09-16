@@ -913,3 +913,12 @@ Use console.log to see if the otherState is still there after click with code be
   console.log(personState, otherState);
 ```
 Even after click, `otherState: "other value"` should still be there.
+
+### 3.21 Stateless vs Stateful components
+
+Stateful/smart/container component: Component that manages states, using hooks(useState) or state.
+
+Stateless/dumb/presentational component:
+Component that doesn't manage state.
+
+Good practice: create as many as stateless components, and a few stateful components. It will make the data easier to manage, to reuse etc. So, when you want to change something in your app, it's clear where to change it.
