@@ -551,8 +551,9 @@ import React, { Component } from "react";
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="App">
         <h1>Hola!</h1>
+        <h2>Name's TG.</h2>
       </div>
     );
   }
@@ -560,4 +561,50 @@ class App extends Component {
 ```
 
 We make class then use _extends_ to inherit from Component class from the react library.
-The class in the example have one method called, render method to render something to the screen. Every components need to have this render method.
+The class in the example have one method called, render method to render something to the screen. Every components need to have this render method. There are other react elements that can be used to do other functions.
+
+Note that the render() method only return() everything in one root element, which usually in <div>. So we must put every elements in one element.
+
+Also note that every components or elements created must have
+
+### 3.8 Creating a Functional Component
+
+#### Keeping good structure and importing habit
+
+Let say we want to make a component called Person.js, make a folder named Person in scr/ and make the new file inside it.
+Component is just a function which returns some jsx.
+
+Now we're in the Person.js, you can use _function_ keyword, but let's stick to good habit which is, put it in const or let, and using arrow function.
+
+But first, we have to import react.
+
+```javascript
+import React from "react";
+```
+
+We're not importing the _Component_ from react tho, like before because we are creating a function, not class.
+
+Now, write simple function like below:
+
+```javascript
+const person = () => {
+  return <p> I'm a person! </p>;
+};
+```
+
+Then export it.
+```javascript
+export default person
+```
+To start using this component in any file, in App.js for example:
+
+Import it:
+```javascript
+import Person from './Person/Person';
+```
+Note that give the component name with Uppercase character, so it wouldn't interfere with jsx format.
+
+To call it:
+```javascript
+<Person /> // or <Person></Person>
+```
