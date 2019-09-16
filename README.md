@@ -922,3 +922,52 @@ Stateless/dumb/presentational component:
 Component that doesn't manage state.
 
 Good practice: create as many as stateless components, and a few stateful components. It will make the data easier to manage, to reuse etc. So, when you want to change something in your app, it's clear where to change it.
+
+### 3.22 Passing method reference between components
+This is no fancy hack. You can pass a method as props. You learned before that props use to share attributes between components. So the trick is, we put the method in an attribute.
+
+Example 1, let say we want to share or run _switchNameHandler_ (in App.js) from other component like Person in Person.js, with a click event. The _switchNameHandler_ will be run whenever the user click on the paragraph. We can make a new prop like below. Let's name the new props, 'click'.
+In Person.js, use onClick event and put in _props.click_.
+```js
+      <p onClick={props.click}>
+        I'm {props.name} and I'm {props.age} years old.
+      </p>
+```
+In App.js, use attribute 'click' to link with _switchNameHandler_ like below.
+```js
+        <Person
+          click={this.switchNameHandler}
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+        />
+```
+
+Example 2, you want to pass a value to our _switchNameHandler_ function. We still use the same way as example 1, plus we use bind() and argument in _switchNameHandler_.
+Same changes we made on Person.js like below. 
+```js
+      <p onClick={props.click}>
+        I'm {props.name} and I'm {props.age} years old.
+      </p>
+```
+
+But in App.js, we want to change Max's name in the _switchNameHandler_ function using argument we named _newName_.
+```js
+  switchNameHandler = newName => {
+    this.setState({
+      persons: [
+        { name: newName, age: 28 },
+        { name: "Manu", age: 29 },
+        { name: "Elle", age: 27 }
+      ]
+    });
+  };
+```
+
+Then, we use bind() to get the argument value. bind() contains 2 elements, first is _this_, second one is the new value for the argument like below.
+```js
+        <Person
+          click={this.switchNameHandler.bind(this, "Max!!!!!!")}
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+        />
+```
