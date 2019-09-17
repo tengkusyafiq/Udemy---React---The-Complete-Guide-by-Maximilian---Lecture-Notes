@@ -14,8 +14,8 @@ https://codepen.io/tengkusyafiq/pen/vYBamwp
 
 ## 1.7. Understanding Single Page Applications and Multi Page Applications
 
-single page= single html file, contents are rendered by clients
-multi page= multiple html files, contents are rerendered by servers
+Single page= single html file, contents are rendered by clients.
+Multi page= multiple html files, contents are rerendered by servers.
 
 ## 1.8 Course Outline
 
@@ -1009,3 +1009,6 @@ Additionally, to put the name "Manu" in the text input before we changed it, we 
       <input type="text" onChange={props.change} value={props.name}>
 ```
 _props.name_ is referring to related name properties, in this case, "Manu". Now if you run it, word "Manu" is already in the text box, and you can change it. This is called, two way binding.
+
+### 3.24 Adding styling and stylesheets
+
