@@ -1011,4 +1011,34 @@ Additionally, to put the name "Manu" in the text input before we changed it, we 
 _props.name_ is referring to related name properties, in this case, "Manu". Now if you run it, word "Manu" is already in the text box, and you can change it. This is called, two way binding.
 
 ### 3.24 Adding styling and stylesheets
+For good habit, if you want to make a css for a component file, make it the same name as the component file. 
+Let say we want to make a css file for Person.js, make a new file named Person.css. In this case, we want to apply a box styling.
 
+In Person.css, use code below:
+```js
+.Person {
+  width: 60%;
+  margin: auto;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 16px;
+}
+```
+
+Now, in Person.js, import it using line below.
+```js
+import "./Person.css";
+```
+
+`.Person{}` in Person.css is the class we named. To use this class in Person.js, add it with _className_.
+```js
+    <div className="Person">
+      <p onClick={props.click}>
+        I'm {props.name} and I'm {props.age} years old.
+      </p>
+      <p>{props.children}</p>
+      <input type="text" onChange={props.change} value={props.name} />
+    </div>
+```
+
+It should pickup the styling and put the div in like a box.
