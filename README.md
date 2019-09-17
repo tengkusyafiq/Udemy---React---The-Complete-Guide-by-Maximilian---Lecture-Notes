@@ -1042,3 +1042,27 @@ import "./Person.css";
 ```
 
 It should pickup the styling and put the div in like a box.
+
+### 3.25 Working with inline style, without external css file.
+You can also just write the styling in the js file itself, if you only want to make a small styling.
+
+You can use backgroundColor(camel case style) or "background-color"(put in " ") for the styles name.
+Make sure to wrap their value in quotation mark(' '). Let's see the example below, we want to style the button in App.js.
+
+In _render()_, make a const and named it, for example buttonStyle.
+```js
+  render() {
+    const buttonStyle = {
+      backgroundColor: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px"
+    };
+```
+
+Then, use a reserved attribute named _style_ on the button to use the style like below.
+```js
+        <button style={buttonStyle} onClick={this.switchNameHandler}>
+```
+
+The button style should change now.
