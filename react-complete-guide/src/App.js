@@ -45,6 +45,31 @@ class App extends Component {
       border: "1px solid blue",
       padding: "8px"
     };
+
+    let persons = null;
+    if (this.state.showPerson) {
+      persons = (
+        <div>
+          <Person
+            click={this.switchNameHandler.bind(this, "Max!!!!!!")}
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+          />
+          <Person
+            click={this.switchNameHandler}
+            change={this.userNameHandler}
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+          />
+          <Person
+            click={this.switchNameHandler}
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+          />
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Hola!</h1>
@@ -52,26 +77,7 @@ class App extends Component {
         <button style={buttonStyle} onClick={this.togglePersonsHandler}>
           Toggle me!
         </button>
-        {this.state.showPerson === true ? (
-          <div>
-            <Person
-              click={this.switchNameHandler.bind(this, "Max!!!!!!")}
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-            />
-            <Person
-              click={this.switchNameHandler}
-              change={this.userNameHandler}
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-            />
-            <Person
-              click={this.switchNameHandler}
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}
-            />
-          </div>
-        ) : null}
+        {persons}
       </div>
     );
   }

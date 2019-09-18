@@ -1163,3 +1163,51 @@ Now let's write the _togglePersonsHandler_ to handle and toggle the click event.
 Explanation: First, we make a constant to save current value of _showPerson_ temporarily before inverting it.
 Then, use ! to invert whatever boolean value _doesShow_. Use setState to update the _showPerson_.
 
+### 4.3 Handling dynamic content better way.
+If we use the previous way, things might get messy in a bigger codes. This can be done by putting the expressions outside the messy return() in render().
+
+We now can use if() and without inside {} since we're not in jsx, but already in js part of the code.
+
+To get started from the last part, remove the old expression but keep the <div> that contains persons and paste later in new expression.
+
+Somewhere inside render(), make a variable called _persons_ and its value is _null_. _null_ should be the default value for the variable.
+```js
+    let persons = null;
+```
+How it works? We will put the persons list <div> inside this variable and call it in return() in {}, because it's in js, duh.
+```js
+        <button style={buttonStyle} onClick={this.togglePersonsHandler}>
+          Toggle me!
+        </button>
+        {persons}
+```
+
+Now to toggle/change the _persons_ value from null to the <div> and vice versa, write the expression below in render().
+```js
+    if (this.state.showPerson) {
+      persons = (
+        <div>
+          <Person
+            click={this.switchNameHandler.bind(this, "Max!!!!!!")}
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+          />
+          <Person
+            click={this.switchNameHandler}
+            change={this.userNameHandler}
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+          />
+          <Person
+            click={this.switchNameHandler}
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+          />
+        </div>
+      );
+    }
+```
+Explanation: since _showPerson_ is boolean, you don't have to to `if (this.state.showPerson === true){}'. `if (this.state.showPerson){}' is enough. Same meaning. So, if _showPerson_ is true(after the click change its value with setState), the _persons_ variable will hold the persons list <div> instead of _null_.
+
+Your code will be easy to manage since the expression can be put anywhere in the render().
+
