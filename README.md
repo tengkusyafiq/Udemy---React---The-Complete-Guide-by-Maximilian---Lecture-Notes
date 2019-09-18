@@ -1066,3 +1066,6 @@ Then, use a reserved attribute named _style_ on the button to use the style like
 ```
 
 The button style should change now.
+
+### 3.26 Assignment
+_Skipped._
