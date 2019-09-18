@@ -1211,3 +1211,48 @@ Explanation: since _showPerson_ is boolean, you don't have to to `if (this.state
 
 Your code will be easy to manage since the expression can be put anywhere in the render().
 
+### 4.4 Outputting Lists intro
+Right now, we hard-coded our list of persons both in our state and render. We can't use this way if we want to fetch a list of persons in the server.
+After this, we will learn how to output arrays, interact with them, update, change them in our state.
+
+### 4.5 Outputting Lists
+Let sat we don't know how many persons in the _persons_ property in the state and we want to render it. We can't make each element in the <div> since we don't know the exact numbers. We can render it by using _map()_. 
+
+Instead of using the previous code like below,
+```js
+    if (this.state.showPerson) {
+      persons = (
+        <div>
+          <Person
+            click={this.switchNameHandler.bind(this, "Max!!!!!!")}
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+          />
+          <Person
+            click={this.switchNameHandler}
+            change={this.userNameHandler}
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+          />
+          <Person
+            click={this.switchNameHandler}
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+          />
+        </div>
+      );
+```
+we write js code in {} since we are in <div> (jsx) like below.
+```js
+    let persons = null;
+    if (this.state.showPerson) {
+      persons = (
+        <div>
+          {this.state.persons.map(persona => {
+            return <Person name={persona.name} age={persona.age} />;
+          })}
+        </div>
+      );
+    }
+```
+map() will go in the _this.state.persons_ one by one (we name one person in the array _persona_, you can name it whatever you want), and return it in new element called <Person>. Then, we make _name_ and _age_ attribute to link with each person's name and age key in the state.
