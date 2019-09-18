@@ -1069,3 +1069,97 @@ The button style should change now.
 
 ### 3.26 Assignment
 _Skipped._
+
+## 4. Working with Lists and Conditionals
+Learn to output contents conditionally. For example, you want to render conditionally.
+
+### 4.1 Rendering Content Conditionally
+In this topic, let's try hide/show the person lists we made before with button clicks, to demonstrate that we can render conditionally.
+
+Firstly, in App.js, put the persons list in one <div> so we can control them at once.
+
+```js
+        <div>
+          <Person
+            click={this.switchNameHandler.bind(this, "Max!!!!!!")}
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+          />
+          <Person
+            click={this.switchNameHandler}
+            change={this.userNameHandler}
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+          />
+          <Person
+            click={this.switchNameHandler}
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+          />
+        </div>
+```
+
+For the button, pass the event to a function to handle the clicking. Let's call the function _togglePersonsHandler_.
+```js
+        <button style={buttonStyle} onClick={this.togglePersonsHandler}>
+          Switch me!
+        </button>
+```
+
+Add a property in state to hold the current(hide or show boolean), let's name it _showPersons_. To make us easy to understand, false = hide the <div>, true = show it.
+```js
+  state = {
+    persons: [
+      { name: "Max", age: 28 },
+      { name: "Manu", age: 29 },
+      { name: "Elle", age: 26 }
+    ],
+    otherState: "other value",
+    showPerson: "false"
+  };
+```
+
+Note that the 'html' language that we use is actually a javascript. so you can even use that 'html' in {}. So you can use ternary expression (you can't use block statement like , if(){}) to handle the condition.
+```js
+{this.state.showPerson === true ? <div of the persons> : null}
+```
+Expression explanation:
+? means, if the expression in the front (showPerson=true) is true, do the <div>.
+: means, if not, do null.
+
+The whole script looks like below.
+```js
+        {this.state.showPerson === true ? (
+          <div>
+            <Person
+              click={this.switchNameHandler.bind(this, "Max!!!!!!")}
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+            />
+            <Person
+              click={this.switchNameHandler}
+              change={this.userNameHandler}
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}
+            />
+            <Person
+              click={this.switchNameHandler}
+              name={this.state.persons[2].name}
+              age={this.state.persons[2].age}
+            />
+          </div>
+        ) : null}
+      </div>
+```
+
+Now let's write the _togglePersonsHandler_ to handle and toggle the click event.
+
+```js
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPerson;
+    this.setState({ showPerson: !doesShow });
+  };
+```
+Explanation: First, we make a constant to save current value of _showPerson_ temporarily before inverting it.
+Then, use ! to invert whatever boolean value _doesShow_. Use setState to update the _showPerson_.
+
