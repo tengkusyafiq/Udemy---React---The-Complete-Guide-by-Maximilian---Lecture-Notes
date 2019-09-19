@@ -561,7 +561,7 @@ class App extends Component {
 We make class then use _extends_ to inherit from Component class from the react library.
 The class in the example have one method called, render method to render something to the screen. Every components need to have this render method. There are other react elements that can be used to do other functions.
 
-Note that the render() method only return() everything in one root element, which usually in <div>. So we must put every elements in one element.
+Note that the render() method only return() everything in one root element, which usually in `<div>`. So we must put every elements in one element.
 
 Also note that every components or elements created must have
 
@@ -974,8 +974,8 @@ Then, we use bind() to get the argument value. bind() contains 2 elements, first
 To check if it works, click on the related paragraph.
 
 ### 3.23 Adding two way binding
-Let say we want user to change the name. So we use <input> and _onChange_ so we get the change every time the user change input.
-To do this, let's add line below the Person.js in <div> like below.
+Let say we want user to change the name. So we use `<input>` and _onChange_ so we get the change every time the user change input.
+To do this, let's add line below the Person.js in `<div>` like below.
 ```js
       <input type="text" onChange={props.change}>
 ```
@@ -1004,7 +1004,7 @@ Make a new method to handle the state change instead of using the old one, just 
 We use a reserved argument called _event_ because we only expect to get an event when using this method. In this example, we only want to change the second name (Manu). So we set the name to _event.target.value_.
 Basically, the text input from Person.js will pass to userNameHandler, then the input will be put into the "Manu" name state.
 
-Additionally, to put the name "Manu" in the text input before we changed it, we can use reserved attribute named _value_ in <input> in Person.js
+Additionally, to put the name "Manu" in the text input before we changed it, we can use reserved attribute named _value_ in `<input>` in Person.js
 ```js
       <input type="text" onChange={props.change} value={props.name}>
 ```
@@ -1076,7 +1076,7 @@ Learn to output contents conditionally. For example, you want to render conditio
 ### 4.1 Rendering Content Conditionally
 In this topic, let's try hide/show the person lists we made before with button clicks, to demonstrate that we can render conditionally.
 
-Firstly, in App.js, put the persons list in one <div> so we can control them at once.
+Firstly, in App.js, put the persons list in one `<div>` so we can control them at once.
 
 ```js
         <div>
@@ -1106,7 +1106,7 @@ For the button, pass the event to a function to handle the clicking. Let's call 
         </button>
 ```
 
-Add a property in state to hold the current(hide or show boolean), let's name it _showPersons_. To make us easy to understand, false = hide the <div>, true = show it.
+Add a property in state to hold the current(hide or show boolean), let's name it _showPersons_. To make us easy to understand, false = hide the `<div>`, true = show it.
 ```js
   state = {
     persons: [
@@ -1124,7 +1124,7 @@ Note that the 'html' language that we use is actually a javascript. so you can e
 {this.state.showPerson === true ? <div of the persons> : null}
 ```
 Expression explanation:
-? means, if the expression in the front (showPerson=true) is true, do the <div>.
+? means, if the expression in the front (showPerson=true) is true, do the `<div>`.
 : means, if not, do null.
 
 The whole script looks like below.
@@ -1168,13 +1168,13 @@ If we use the previous way, things might get messy in a bigger codes. This can b
 
 We now can use if() and without inside {} since we're not in jsx, but already in js part of the code.
 
-To get started from the last part, remove the old expression but keep the <div> that contains persons and paste later in new expression.
+To get started from the last part, remove the old expression but keep the `<div>` that contains persons and paste later in new expression.
 
 Somewhere inside render(), make a variable called _persons_ and its value is _null_. _null_ should be the default value for the variable.
 ```js
     let persons = null;
 ```
-How it works? We will put the persons list <div> inside this variable and call it in return() in {}, because it's in js, duh.
+How it works? We will put the persons list `<div>` inside this variable and call it in return() in {}, because it's in js, duh.
 ```js
         <button style={buttonStyle} onClick={this.togglePersonsHandler}>
           Toggle me!
@@ -1182,7 +1182,7 @@ How it works? We will put the persons list <div> inside this variable and call i
         {persons}
 ```
 
-Now to toggle/change the _persons_ value from null to the <div> and vice versa, write the expression below in render().
+Now to toggle/change the _persons_ value from null to the `<div>` and vice versa, write the expression below in render().
 ```js
     if (this.state.showPerson) {
       persons = (
@@ -1207,7 +1207,7 @@ Now to toggle/change the _persons_ value from null to the <div> and vice versa, 
       );
     }
 ```
-Explanation: since _showPerson_ is boolean, you don't have to to `if (this.state.showPerson === true){}'. `if (this.state.showPerson){}' is enough. Same meaning. So, if _showPerson_ is true(after the click change its value with setState), the _persons_ variable will hold the persons list <div> instead of _null_.
+Explanation: since _showPerson_ is boolean, you don't have to to `if (this.state.showPerson === true){}'. `if (this.state.showPerson){}' is enough. Same meaning. So, if _showPerson_ is true(after the click change its value with setState), the _persons_ variable will hold the persons list `<div>` instead of _null_.
 
 Your code will be easy to manage since the expression can be put anywhere in the render().
 
@@ -1216,7 +1216,7 @@ Right now, we hard-coded our list of persons both in our state and render. We ca
 After this, we will learn how to output arrays, interact with them, update, change them in our state.
 
 ### 4.5 Outputting Lists
-Let sat we don't know how many persons in the _persons_ property in the state and we want to render it. We can't make each element in the <div> since we don't know the exact numbers. We can render it by using _map()_. 
+Let sat we don't know how many persons in the _persons_ property in the state and we want to render it. We can't make each element in the `<div>` since we don't know the exact numbers. We can render it by using _map()_. 
 
 Instead of using the previous code like below,
 ```js
@@ -1242,7 +1242,7 @@ Instead of using the previous code like below,
         </div>
       );
 ```
-we write js code in {} since we are in <div> (jsx) like below.
+we write js code in {} since we are in `<div>` (jsx) like below.
 ```js
     let persons = null;
     if (this.state.showPerson) {
@@ -1255,4 +1255,4 @@ we write js code in {} since we are in <div> (jsx) like below.
       );
     }
 ```
-map() will go in the _this.state.persons_ one by one (we name one person in the array _persona_, you can name it whatever you want), and return it in new element called _<Person/>_. Then, we make _name_ and _age_ attribute to link with each person's name and age key in the state.
+map() will go in the _this.state.persons_ one by one (we name one person in the array _persona_, you can name it whatever you want), and return it in new element called `<Person/>`. Then, we make _name_ and _age_ attribute to link with each person's name and age key in the state.
