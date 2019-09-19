@@ -1300,6 +1300,7 @@ Code below is the _deletePersonHandler_ function.
     const persons = [...this.state.persons]; //temporarily copy the persons list
     //or to copy, you also can use the old way like below
     //const persons = this.state.persons.slice();
+    //const persons = this.state.persons.; //bad way of copying data
 
     persons.splice(personIndex, 1); //to remove 1 element from the array. Which one? The personIndex.
     this.setState({ person: persons }); //update list
