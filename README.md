@@ -1255,4 +1255,4 @@ we write js code in {} since we are in <div> (jsx) like below.
       );
     }
 ```
-map() will go in the _this.state.persons_ one by one (we name one person in the array _persona_, you can name it whatever you want), and return it in new element called <Person >. Then, we make _name_ and _age_ attribute to link with each person's name and age key in the state.
+map() will go in the _this.state.persons_ one by one (we name one person in the array _persona_, you can name it whatever you want), and return it in new element called _<Person>_. Then, we make _name_ and _age_ attribute to link with each person's name and age key in the state.
