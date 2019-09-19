@@ -13,14 +13,11 @@ class App extends Component {
     showPerson: "false"
   };
 
-  switchNameHandler = newName => {
-    this.setState({
-      persons: [
-        { name: newName, age: 28 },
-        { name: "Manu", age: 29 },
-        { name: "Elle", age: 27 }
-      ]
-    });
+  deletePersonHandler = personIndex => {
+    //name an argument as personIndex to keep index value got.
+    const persons = this.state.persons; //temporarily hold the persons list
+    persons.splice(personIndex, 1); //to remove 1 element from the array. Which one? The personIndex.
+    this.setState({ person: persons }); //update list
   };
 
   userNameHandler = event => {
@@ -50,8 +47,15 @@ class App extends Component {
     if (this.state.showPerson) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
-            return <Person name={person.name} age={person.age} />;
+          {this.state.persons.map((person, index) => {
+            //add second argument 'index' to know which person we're looking right now.
+            return (
+              <Person
+                click={() => this.deletePersonHandler(index)} //link to the function, pass index with arrow function instead of using bind(in older topic)
+                name={person.name}
+                age={person.age}
+              />
+            );
           })}
         </div>
       );

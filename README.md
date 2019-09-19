@@ -1256,3 +1256,50 @@ we write js code in {} since we are in `<div>` (jsx) like below.
     }
 ```
 map() will go in the _this.state.persons_ one by one (we name one person in the array _persona_, you can name it whatever you want), and return it in new element called `<Person/>`. Then, we make _name_ and _age_ attribute to link with each person's name and age key in the state.
+
+### 4.6 Lists & State (Delete an index in a list)
+Let's learn how to delete a person from the array by clicking on the person element. Same concept, click event calls a function that does all the jobs.
+
+In Person.js, add a click listener (onClick) to execute the _click_ props.
+```js
+    <div className="Person" onClick={props.click}>
+      <p>
+        I'm {props.name} and I'm {props.age} years old.
+      </p>
+      <p>{props.children}</p>
+      <input type="text" onChange={props.change} value={props.name} />
+    </div>
+```
+
+In App.js, add the _click_ above as attribute to the `<Person>` element we made in previous topic, and link it to a function that will delete the person in the state.
+```js
+    if (this.state.showPerson) {
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => { //add second argument 'index' to know which person we're looking right now.
+            return (
+              <Person
+                click={() => this.deletePersonHandler(index)} //link to the function, pass index with arrow function instead of using bind(in older topic)
+                name={person.name}
+                age={person.age}
+              />
+            );
+          })}
+        </div>
+      );
+    }
+```
+Explanation on the edit:
+First, we need to know where are we in the person array. With map(), we can use the reserved argument called _index_ as a second argument. Put them in bracket to not confuse the arrow function.
+Now to pass the _index_ value to the _deletePersonHandler_ function, use blank arrow function.
+
+Code below is the _deletePersonHandler_ function.
+```js
+  deletePersonHandler = personIndex => {
+    //name an argument as personIndex to keep index value got.
+    const persons = this.state.persons; //temporarily hold the persons list
+    persons.splice(personIndex, 1); //to remove 1 element from the array. Which one? The personIndex.
+    this.setState({ person: persons }); //update list
+  };
+```
+What the code does is, when a person element is clicked, the index number from map() is passed into _personIndex_. We put the persons list from state into a const named persons. Then, we removed the clicked person(based on the index) using splice() from the const. Lastly, use setState to update the list into state. We already did the dynamic render before, so the clicked person should disappear.
