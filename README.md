@@ -1297,7 +1297,10 @@ Code below is the _deletePersonHandler_ function.
 ```js
   deletePersonHandler = personIndex => {
     //name an argument as personIndex to keep index value got.
-    const persons = this.state.persons; //temporarily hold the persons list
+    const persons = [...this.state.persons]; //temporarily copy the persons list
+    //or to copy, you also can use the old way like below
+    const persons = this.state.persons.slice();
+
     persons.splice(personIndex, 1); //to remove 1 element from the array. Which one? The personIndex.
     this.setState({ person: persons }); //update list
   };
