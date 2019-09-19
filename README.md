@@ -1307,3 +1307,30 @@ Code below is the _deletePersonHandler_ function.
   };
 ```
 What the code does is, when a person element is clicked, the index number from map() is passed into _personIndex_. We put the persons list from state into a const named persons. Then, we removed the clicked person(based on the index) using splice() from the const. Lastly, use setState to update the list into state. We already did the dynamic render before, so the clicked person should disappear.
+
+### 4.8 Lists & Keys
+Each elements should have attribute called _key_ to make sure everything is unique between each other.
+Since we're rendering dynamically, React have a bad time of identifying each same elements rendered. To make it update efficiently, we use the default attribute called _key_. It's value, usually or should be a key named ID (or anything unique for each persons) in our database/state. Example:
+```js
+  state = {
+    persons: [
+      { id: "rgvstc2343", name: "Max", age: 28 },
+      { id: "3cr24rf43r", name: "Manu", age: 29 },
+      { id: "ewrc44y65y", name: "Elle", age: 26 }
+    ],
+    otherState: "other value",
+    showPerson: "false"
+  };
+```
+
+Now use this attribute on our dynamic `<Person>` element to differentiate between each other.
+```js
+            return (
+              <Person
+                click={() => this.deletePersonHandler(index)} //link to the function, pass index with arrow function instead of using bind(in older topic)
+                name={person.name}
+                age={person.age}
+                key={person.id}
+              />
+            );
+```
