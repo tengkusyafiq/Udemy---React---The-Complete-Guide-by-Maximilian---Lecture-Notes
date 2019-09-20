@@ -1334,3 +1334,73 @@ Now use this attribute on our dynamic `<Person>` element to differentiate betwee
               />
             );
 ```
+
+### 4.9 Flexible Lists - changing the lists in realtime
+Our goal is to edit the name of any persons in the list. We did the input part in Person.js before. Let's recap the code below. Btw, please see Topic 3.22 and 3.23 if you're having a hard time catching up with this topic.
+```js
+      <input type="text" onChange={props.change} value={props.name} />
+```
+Using _onChange_ attribute, we try to execute everytime the value changes. We point the attribute to a prop we called _change_ to trigger a function later to update a state. Attribute _value_, which the value we type in, will go to _name_ props which can be used later.  
+
+Okay now let's start. On App.js, use _change_ prop as an attribute in our `<Person>` element, and point it to function(or method in other language) to handle the update the person, named _nameChangedHandler_.
+```js
+            return (
+              <Person
+                click={() => this.deletePersonHandler(index)} //link to the function, pass index with arrow function instead of using bind(in older topic)
+                name={person.name}
+                age={person.age}
+                key={person.id}
+                change={this.nameChangedHandler}
+              />
+            );
+```
+Now everytime user type to change the name, it will point to the method. The method is almost the same like we learnt, but now, we have to add another argument since we need two pieces of information now, the _event_ (reserved argument we learnt before), and _id_ to get the ID of the person in the list.
+```js
+  nameChangedHandler = (event, id) => {
+    this.setState({
+      persons: [
+        { name: "Max", age: 28 },
+        { name: event.target.value, age: 29 },
+        { name: "Elle", age: 27 }
+      ]
+    });
+  };
+```
+
+Now, let's edit the `<Person>` to send the two data(event and person id). To do that, we edit the _change_ attribute we made in before in the `<Person>` element by defining an _anonymous function_ like below.
+```js
+change={event => this.nameChangedHandler(event, person.id)}
+```
+
+Our goal is to change the state of a person which the user choose to change. That's when the person ID comes in action.
+We can use find() or findIndex() to go through the list to find the ID passed. On top inside of _nameChangedHandler_, add the const with function below.
+```js
+const personIndex = this.state.persons.findIndex(p => {
+  return p.id === id;
+})  
+```
+
+The _return_ explanation:
+If the _p_'s ID is same as the ID we're looking for, it will return _true_, and vice versa. Then the result of the _return_ will be stored inside the const _personIndex_.
+
+Now to get the person inside the persons list, add line below after line above. Line below will copy the person line with the right index from state, into a variable. This is important so you can use it whatever you want before setState.
+```js
+const person = {...this.state.persons[personIndex]};
+```
+
+To change the state of the person with the new name, add new lines below before the setState. 
+```js
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({
+      persons: persons
+    });
+```
+Explanation: 
+The first line put the new name into the name key of the person. 
+Second line, we copy the persons list from state into new const called persons before changing it.
+Third line, we overwrite the new data(we get from first line) at the right position in persons. Now persons hold a new updated data, and ready to setState.
+Then we setState by updating the persons variable into persons in state.
+
