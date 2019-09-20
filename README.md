@@ -1404,3 +1404,45 @@ Second line, we copy the persons list from state into new const called persons b
 Third line, we overwrite the new data(we get from first line) at the right position in persons. Now persons hold a new updated data, and ready to setState.
 Then we setState by updating the persons variable into persons in state.
 
+## 5. Styling React Components and Elements
+### 5.2 Outlining the Problem Set
+We made an inline css for the button before. Now we want to make the style changes on hover. We can only use pseudo selectors like _hover_ in a css file. We also want to change the style dynamically.
+
+### 5.3 Change style dynamically
+Just like render things dynamically by putting them into a function and link the function in render, same way is used to change the style dynamically.
+For this example, let's change the button color from green to red if you hide the persons components list. Change the default color to red.
+```js
+  render() {
+    const buttonStyle = {
+      backgroundColor: "red",
+      color: "white";
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px"
+    };
+...
+```
+
+Then, inside the "if show the persons list" condition, simply update the _backgroundColor_ to green.
+```js
+    let persons = null;
+    if (this.state.showPerson) {
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => {
+            //add second argument 'index' to know which person we're looking right now.
+            return (
+              <Person
+                click={() => this.deletePersonHandler(index)} //link to the function, pass index with arrow function instead of using bind(in older topic)
+                name={person.name}
+                age={person.age}
+                key={person.id}
+                change={event => this.nameChangedHandler(event, person.id)}
+              />
+            );
+          })}
+        </div>
+      );
+      buttonStyle.backgroundColor = "green";
+    }
+```
